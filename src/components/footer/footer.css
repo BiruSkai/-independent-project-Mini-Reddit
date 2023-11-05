@@ -1,0 +1,35 @@
+.containerFooter{
+    width: 100%;
+    bottom: 0px;
+    background: #b0d7dc;
+    height: 72px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.footerSocialMedia a{
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.footerAuthor{
+    font-size: 0.8rem;
+}
+
+@media (min-width: 600px) {
+    .containerFooter{
+        display: inline-flex;
+        justify-content: space-around;
+    }
+
+    .footerSocialMedia{
+        scale: 1.2;
+    }
+
+    .footerAuthor {
+        font-size: 1rem;
+    }
+}

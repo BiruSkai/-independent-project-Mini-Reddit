@@ -1,0 +1,11 @@
+.cardListHeader{
+        width: 90%;
+        display: inline-flex;
+        justify-content: space-around;
+}
+
+.cardListHeader h6{
+        font-size: 0.7rem;
+        display: inline; 
+
+}

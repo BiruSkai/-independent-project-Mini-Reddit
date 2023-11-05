@@ -1,0 +1,19 @@
+.sidebarContainer{
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .sidebarContainer{
+        display: block;
+        position: absolute;
+        background: #d3f4f4;
+        width: 30%;
+        height: 100vh;
+        padding: 10px;
+        line-height: 30px;
+    }
+
+    .sidebarContainer ul{
+        list-style-type: none;
+    }
+}

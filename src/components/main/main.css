@@ -1,0 +1,19 @@
+.mainContainer{
+    width: 100%;
+    height: 100vh;
+    background: #c9f5c9;
+    padding: 10px 0;
+}
+
+.mainContainer ul{
+    list-style-type: none;
+}
+
+@media (min-width:600px) {
+    .mainContainer{
+        position: relative;
+        max-width: 538px;
+        left: 230px;
+       
+    }
+}

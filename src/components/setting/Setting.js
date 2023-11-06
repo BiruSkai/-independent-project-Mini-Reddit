@@ -14,11 +14,10 @@ const Setting = () => {
                 console.log("newPage in Setting ", newPage)
                 setPages(newPage);
                 return;
-                
         };
 
         dispatch(pageDisplayed(pages))
-        console.log("pages post save ", pages)    
+        console.log("pages post save ", pages)   
         
         return ( 
                 <>

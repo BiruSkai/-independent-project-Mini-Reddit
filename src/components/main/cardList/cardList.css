@@ -7,5 +7,28 @@
 .cardListHeader h6{
         font-size: 0.7rem;
         display: inline; 
+}
 
+#header{
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        background: cyan;
+}
+
+.subheader{
+        display: block;
+        font-weight: bold;
+}
+
+#footer{
+        display: inline-flex;
+        background: lemonchiffon;
+}
+
+.subfooterContainer{
+        margin-right: 10px;
+        >.subfooter{
+                margin: auto 2px;
+        }
 }

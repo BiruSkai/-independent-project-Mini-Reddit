@@ -4,7 +4,7 @@ export const fetchBest = createAsyncThunk("fetchBest", async(arg) => {
          
         try{
                 
-                const response = await fetch(`https://www.reddit.com/best.json?limit=${arg}`);
+                const response = await fetch(`https://www.reddit.com/best.json?limit=${arg}&after=t5_2xhvq`);
                 const data = response.json();
                 console.log("asyncthunk fetchBest ", data);
                 return data;
@@ -22,18 +22,20 @@ const bestSlice = createSlice({
                 data: [],
                 prevPage: null,
                 nextPage: null,
-                count: 0,
+                count: {total: 0, count: 0},
                 isError: false,
         },
         reducers:{
-                increment(state){
-                        state.count += 15
+                increment(state, action){
+                        state.count.count = action.payload;
+                        state.count.total += action.payload;
                 },
-                decrement(state){
-                        state.count -= 15
+                decrement(state, action){
+                        state.count.count = action.payload;
+                        state.count.total -= action.payload;
                 },
                 reset(state){
-                        state.count = 0
+                        state.count.total = 0;
                 }
         },
         extraReducers: (builder) => {
@@ -57,3 +59,4 @@ const bestSlice = createSlice({
 });
 
 export default bestSlice.reducer;
+export const {increment, decrement, reset} = bestSlice.actions;

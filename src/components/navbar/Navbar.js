@@ -1,6 +1,6 @@
 import {FcReddit} from "react-icons/fc";
 import {BiSearchAlt} from "react-icons/bi";
-import {IoIosArrowDropdownCircle} from "react-icons/io";
+import {RxDropdownMenu} from "react-icons/rx";
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import Setting from "../setting/Setting";
@@ -38,7 +38,7 @@ const Header = () => {
                     <button type="submit"><BiSearchAlt size={25} /></button>
                 </form>
               </div>
-              <div className="dropdownIcon" onClick={handleClickDropdown}><IoIosArrowDropdownCircle size={25} /></div>
+              <div className="dropdownIcon" onClick={handleClickDropdown}><RxDropdownMenu size={25} /></div>
               <div className="offCanvas">
                 <div id="sub-offCanvas">
                   <span className="closeIcon" onClick={closeDropdown}>&#10006;</span>

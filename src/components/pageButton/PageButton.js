@@ -1,49 +1,42 @@
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./pageButton.css";
 import {GrFormNext} from 'react-icons/gr';
 import {GrPowerReset} from 'react-icons/gr';
 import {GrFormPrevious} from 'react-icons/gr';
-import {increment, decrement, reset} from "../../redux/ducks/BestSlice";
+import {increment, decrement, reset, fetchBest} from "../../redux/ducks/BestSlice";
 
-const PageButton = ({page}) => {
+
+const PageButton = ({page, nextPage, prevPage}) => {
 	const dispatch = useDispatch();
+	
+	// Get the latest rank of downloaded items 
+	let pageState = useSelector((state) => state.bestSliceReducer.count.total);
+	// console.log("pageState in PageButton.js ", pageState);
 
-	const pageState = useSelector((state) => state.bestSliceReducer.count.total);
-	console.log("pageState in PageButton.js ", pageState);
-	const lastCount = useSelector((state) => state.bestSliceReducer.count.count);
-	console.log("lastCount ", lastCount);
+	//Managing correct data type for item'calcualtion
 	page = parseInt(page);
-	console.log("page ", page);
+	pageState = parseInt(pageState);
 
-	const previousButton = document.querySelector(".previous");
-
-	function handleClickNext(){
-		dispatch(increment(page))
-		console.log("next Click ",page);
-
-		if(page > 0){
-			previousButton.style.display = "inline";	
-		}
+	//The lowest rank item displayed
+	const diff = pageState - page;
+	// console.log("diff Click", typeof(diff), diff);
+	
+	function handleClickNext(){	
+		dispatch(fetchBest({page, nextPage}))
+		dispatch(increment({page}))
+		// console.log("next Click ",page);
 		return;
 	};
 
 	function handleClickPrevious(){
-		dispatch(decrement(page))
-		
-		const diff = pageState - page;
-		console.log("diff Click", diff);
-
-		if(diff < 0){
-			previousButton.style.display = "none";
-			handleClickReset();
-			return;
-		} if (diff === 0){
-				return previousButton.style.display = "none"
-		}
+		dispatch(fetchBest({page, prevPage}))
+		dispatch(decrement({page}))
+		// console.log("prev Click ",page);
+		return;
 	};
-
+	
 	function handleClickReset(){
+		dispatch(fetchBest({page}))
 		dispatch(reset())
 		return;
 	};
@@ -51,10 +44,10 @@ const PageButton = ({page}) => {
 	return (
 		<div className="pageButtonContainer">
 			<div className="subPageButton">
-				<small>{`Item ${(pageState - lastCount) < 0 ? 0 : (pageState - lastCount)} - ${pageState}`}</small>
+				<small>{`Item ${diff <= 0 || pageState === diff ? 0 : diff} - ${pageState}`}</small>
 			</div>
 			<div className="subPageButton">
-				<button className="button previous" onClick={handleClickPrevious} ><GrFormPrevious /></button>
+				<button className="button previous" onClick={handleClickPrevious} style={{display:diff < 1 || diff === pageState ? "none":"inline"}}><GrFormPrevious /></button>
 				<button className="button" onClick={handleClickReset}><GrPowerReset /></button> 
 				<button className="button" onClick={handleClickNext}><GrFormNext /></button>	
 			</div>

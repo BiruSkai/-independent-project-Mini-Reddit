@@ -32,39 +32,39 @@ export const CardList = ({best}) => {
 	
 	return ( 
 		<div className="cardListContainer">
-			<div class="col">
-				<div class="card h-100">
-					<div class="card-header" id="header">
+			<div className="col">
+				<div className="card h-100">
+					<div className="card-header" id="header">
 						<div>
-							<small class="text-body-secondary ">Subreddit:</small>
-							<small class="text-body-secondary subheader">{subreddit}</small>
+							<small className="text-body-secondary ">Subreddit:</small>
+							<small className="text-body-secondary subheader">{subreddit}</small>
 						</div>
 						<div>
-							<small class="text-body-secondary ">Author:</small>
-							<small class="text-body-secondary subheader">{author}</small>
+							<small className="text-body-secondary ">Author:</small>
+							<small className="text-body-secondary subheader">{author}</small>
 						</div>
 						<div>
-							<small class="text-body-secondary ">Posted:</small>
-							<small class="text-body-secondary subheader">{createdTime(best)}</small>
+							<small className="text-body-secondary ">Posted:</small>
+							<small className="text-body-secondary subheader">{createdTime(best)}</small>
 						</div>
 					</div>
-					<img src={`${url}`} class="card-img-top" alt=""/>
-					<div class="card-body">
-						<h5 class="card-title">{title}</h5>
-						<p class="card-text">{selftext}</p>
+					<img src={`${url}`} className="card-img-top" alt=""/>
+					<div className="card-body">
+						<h5 className="card-title">{title}</h5>
+						<p className="card-text">{selftext}</p>
 					</div>
-					<div class="card-footer" id="footer">
+					<div className="card-footer" id="footer">
 						<div className="subfooterContainer">
-							<small class="text-body-secondary subfooter">< FaRegComments /> :</small>
-							<small class="text-body-secondary subfooter">{num_comments}</small>
+							<small className="text-body-secondary subfooter">< FaRegComments /> :</small>
+							<small className="text-body-secondary subfooter">{num_comments}</small>
 						</div>
 						<div className="subfooterContainer">
-							<small class="text-body-secondary subfooter"><FaRegThumbsUp /> :</small>
-							<small class="text-body-secondary subfooter">{ups}</small>
+							<small className="text-body-secondary subfooter"><FaRegThumbsUp /> :</small>
+							<small className="text-body-secondary subfooter">{ups}</small>
 						</div>
 						<div className="subfooterContainer">
-							<small class="text-body-secondary subfooter"><FaRegThumbsDown /> :</small>
-							<small class="text-body-secondary subfooter">{downs}</small>
+							<small className="text-body-secondary subfooter"><FaRegThumbsDown /> :</small>
+							<small className="text-body-secondary subfooter">{downs}</small>
 						</div>
 					</div>
 				</div>

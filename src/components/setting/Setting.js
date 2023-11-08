@@ -1,23 +1,25 @@
 import "./setting.css";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { pageDisplayed } from "../../redux/ducks/SettingSlice";
+import { setCount } from "../../redux/ducks/BestSlice";
+import { fetchBest } from "../../redux/ducks/BestSlice";
+import { useState } from "react";
+import {init} from "../main/Main";
 
 const Setting = () => {
-        const [pages, setPages] = useState(5);
         const dispatch = useDispatch();
+        const [page, setPage] = useState(init);
+        console.log("init page Setting.js", init);
 
         const handleClickSetting = (e) => {
                 e.preventDefault();
-                
-                const newPage = document.getElementById("pages").value;
-                console.log("newPage in Setting ", newPage)
-                setPages(newPage);
-                return;
-        };
 
-        dispatch(pageDisplayed(pages))
-        console.log("pages post save ", pages)   
+                        const newPage = parseInt(document.querySelector("#pages").value);
+                        // console.log("newPage in Setting ", newPage)
+                        setPage(newPage);
+                        dispatch(setCount(newPage));
+                        dispatch(fetchBest({page: newPage}));
+                        return;
+        };
         
         return ( 
                 <>
@@ -25,7 +27,7 @@ const Setting = () => {
                                 <h6>Setting:</h6>
                                 <form>
                                         <label className="setting_subForm">Pages displayed:</label>
-                                        <input className="setting_subForm" type="text" id="pages" placeholder={pages}/>
+                                        <input className="setting_subForm" type="text" id="pages" placeholder={page} />
                                         <input className="setting_save" type="submit" value="save" onClick={handleClickSetting}/>
                                 </form>
                         </div>

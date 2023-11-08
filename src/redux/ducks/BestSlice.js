@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchBest = createAsyncThunk("fetchBest", async(arg) => {     
+export const fetchBest = createAsyncThunk("fetchBest", async(args) => {     
+        const {page, nextPage, prevPage} = args 
+        console.log("arg in BestSlice ", page, nextPage, prevPage)
          
         try{
                 
-                const response = await fetch(`https://www.reddit.com/best.json?limit=${arg}&after=t5_2xhvq`);
+                const response = await fetch(`https://www.reddit.com/best.json?limit=${page}&after=${nextPage}&before=${prevPage}`);
                 const data = response.json();
                 console.log("asyncthunk fetchBest ", data);
                 return data;
+              
         }catch(err){
                 const message = `Error occured. Message: ${err.message}`;
                 // console.log("error ", message)
@@ -20,22 +23,35 @@ const bestSlice = createSlice({
         initialState: {
                 isLoading: false,
                 data: [],
-                prevPage: null,
-                nextPage: null,
-                count: {total: 0, count: 0},
+                page: {nextPage: null, prevPage: null},
+                count: {total: 0, count: 0, modifiedSetting: false},
                 isError: false,
         },
         reducers:{
                 increment(state, action){
-                        state.count.count = action.payload;
-                        state.count.total += action.payload;
+                        state.count.modifiedSetting = false; 
+                        state.count.count = action.payload.page;
+                        // console.log("incr count BestSlice ", state.count.count)
+                        state.count.total += action.payload.page;
+                        // console.log("incr total BestSlice ", state.count.total)
                 },
                 decrement(state, action){
-                        state.count.count = action.payload;
-                        state.count.total -= action.payload;
+                        state.count.modifiedSetting = false;
+                        state.count.count = action.payload.page;
+                        // console.log("decr count BestSlice ", state.count.count)
+                        state.count.total -= action.payload.page;
+                        // console.log("decr total BestSlice ", state.count.total)
                 },
                 reset(state){
                         state.count.total = 0;
+                },
+                setCount(state, action){
+                        state.count.modifiedSetting = true;
+                        state.count.count = action.payload;
+                        //Converting to int from string
+                        state.count.total = action.payload;
+                        // console.log("setCount BestSlice", state.count.count);
+                        
                 }
         },
         extraReducers: (builder) => {
@@ -47,8 +63,13 @@ const bestSlice = createSlice({
                         state.isLoading = false;
                         state.isError = false;
                         state.data = action.payload.data.children.map(child => child.data);
-                        state.nextPage = action.payload.data.after;
-                        state.prevPage = action.payload.data.before;
+
+                        const lengthData = state.data.length;
+                        // console.log("lengthData BestSlice", lengthData)
+
+                        state.page.nextPage = state.data[lengthData - 1].name;
+                        state.page.prevPage = state.data[0].name
+        
                 });
                 builder.addCase(fetchBest.rejected, (state, action) => {
                         state.isLoading = false;
@@ -59,4 +80,4 @@ const bestSlice = createSlice({
 });
 
 export default bestSlice.reducer;
-export const {increment, decrement, reset} = bestSlice.actions;
+export const {increment, decrement, reset, setCount} = bestSlice.actions;

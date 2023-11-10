@@ -3,10 +3,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
+        position: static;
         padding: 4px;
         height: 72px;
         background-color: #b0d7dc;
-
 }
 
 .redditIcon{
@@ -52,39 +52,40 @@
         top: 0px;
         transition: 500ms;  
         z-index: 1;     
+        font-size: 0.8rem;
+       
 }
 
 .offCanvas ul li{
         display: block;
         padding: 3px;
-
-}
-
-#sub-offCanvas{
-        font-size: 0.8rem;
-        position: absolute;
-        right: 5%;
 }
 
 .navList{
-        width: 200px;
+        float: right;
+        width: 53%;
+        padding-left: 4%;     
 }
 
 .closeIcon{
-        right: 160px;
+        left: 52%;
         position: absolute;
         padding: 4px;
-        text-decoration: none;
 }
 
 .onCanvas{
         right: 0%;
-        transition: 1000ms
+        transition: 1000ms;
 }
 
 /* For Tablet */
 @media (min-width: 600px) {
-        
+        #settingNavbar{
+                background-color: red;
+                visibility:none;
+                display: none;
+        }
+
         .offCanvas{
                 display: none;
         }

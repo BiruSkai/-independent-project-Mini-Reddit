@@ -11,9 +11,18 @@
         height: 100vh;
         padding: 10px;
         line-height: 30px;
+        font-size: 0.8rem;
     }
 
     .sidebarContainer ul{
         list-style-type: none;
+        padding-left: 0px;
+    }
+}
+
+@media (min-width: 768px){
+    .sidebarContainer{
+        font-size: 1rem;
+        line-height: 1.8rem;
     }
 }

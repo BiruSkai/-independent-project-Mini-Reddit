@@ -14,7 +14,7 @@ const Setting = () => {
                 e.preventDefault();
 
                         const newPage = parseInt(document.querySelector("#pages").value);
-                        // console.log("newPage in Setting ", newPage)
+                        console.log("newPage in Setting ", newPage)
                         setPage(newPage);
                         dispatch(setCount(newPage));
                         dispatch(fetchBest({page: newPage}));

@@ -4,6 +4,7 @@ import {RxDropdownMenu} from "react-icons/rx";
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import Setting from "../setting/Setting";
+import ListLink from "../listLink/ListLink";
 
 const Header = () => {
         var today = new Date();
@@ -15,7 +16,6 @@ const Header = () => {
 
         const handleClickDropdown = () => {
           let  dropDown= document.querySelector(".offCanvas");
-        
           dropDown.classList.add("onCanvas");
         }
 
@@ -41,15 +41,14 @@ const Header = () => {
               <div className="dropdownIcon" onClick={handleClickDropdown}><RxDropdownMenu size={25} /></div>
               <div className="offCanvas">
                 <div id="sub-offCanvas">
-                  <span className="closeIcon" onClick={closeDropdown}>&#10006;</span>
                   
-                  <ul className="navList">
-                    <li>&nbsp;</li>
-                    <li ><Setting /></li>
-                    <li >About</li>
-                    <li >Setting</li>
-                    <li >Setting2</li>
-                  </ul>
+                    <span className="closeIcon" onClick={closeDropdown}>&#10006;</span> 
+                    <ul className="navList">
+                      <li>&nbsp;</li>
+                      <li id="settingNavbar"><Setting /></li>
+                      <ListLink />
+                    </ul>
+                  
                 </div>
               </div>
             </div>

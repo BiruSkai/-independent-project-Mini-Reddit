@@ -1,4 +1,5 @@
 import Setting from "../setting/Setting";
+import ListLink from "../listLink/ListLink";
 import "./sidebar.css";
 
 const Sidebar = () => {
@@ -6,13 +7,10 @@ const Sidebar = () => {
         return (
                 <>
                         <div className="sidebarContainer"> 
-                                <div><Setting /></div>
                                 <ul>
-                                        <li>About</li>
-                                        <li>Setting</li>
-                                        <li>Setting2</li>
-                                </ul>
-                                
+                                        <li><Setting /></li>
+                                        <ListLink /> 
+                                </ul>          
                         </div>
                 </>
          );

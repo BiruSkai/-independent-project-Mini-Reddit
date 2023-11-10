@@ -22,3 +22,15 @@
        
     }
 }
+
+@media (min-width: 1024px) {
+    .mainContainer{
+       max-width: 795px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .mainContainer{
+       max-width: 1210px;
+    }
+}

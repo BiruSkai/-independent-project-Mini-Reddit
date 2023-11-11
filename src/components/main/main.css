@@ -6,6 +6,19 @@
     overflow-y: auto;
 }
 
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.error{
+    background-image: url("../../img/error.jpg");
+    background-size: contain;
+    text-align: center;
+}
+
 .mainContainer ul{
     list-style-type: none;
     display: contents;
@@ -17,20 +30,26 @@
 @media (min-width:600px) {
     .mainContainer{
         position: relative;
-        max-width: 538px;
-        left: 230px;
-       
+        max-width: 420px;
+        left: 180px;
+        width: auto;
+    }
+}
+
+@media (min-width:768px) {
+    .mainContainer{
+        max-width: 589px;
     }
 }
 
 @media (min-width: 1024px) {
     .mainContainer{
-       max-width: 795px;
+       max-width: 845px;
     }
 }
 
 @media (min-width: 1440px) {
     .mainContainer{
-       max-width: 1210px;
+       max-width: 1260px;
     }
 }

@@ -24,6 +24,16 @@ const Header = () => {
           removeDropdown.classList.remove("onCanvas");
         }
 
+        window.onload = e => {
+          const screenWidth = window.innerWidth;
+          // console.log("screen width ", screenWidth);
+          const settingNavbarId = document.querySelector("#settingNavbar");
+          // console.log(settingNavbarId)
+          if(screenWidth >= 768) {
+            return settingNavbarId.remove()
+          }
+        }
+
         return ( 
           <>
             <div className="topnav">

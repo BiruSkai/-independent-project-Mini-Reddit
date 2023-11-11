@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {CardList} from "./cardList/CardList";
 import PageButton from "../pageButton/PageButton";
 import { fetchBest, increment } from "../../redux/ducks/BestSlice";
+import {quantum} from "ldrs";
+quantum.register();
 
 export const init= 5
 const Main = () => {
@@ -41,10 +43,26 @@ const Main = () => {
         const bestSliceReducerPage = useSelector((state) => state.bestSliceReducer.page);
         const {nextPage, prevPage} = bestSliceReducerPage;
         // console.log("nextPage: ", nextPage, "prevPage: ", prevPage);
-        
+        const bestSliceReducerLoading = useSelector((state) => state.bestSliceReducer.isLoading);
+        const bestSliceReducerError = useSelector(state => state.bestSliceReducer.isError);
+
+        if(bestSliceReducerLoading === true){
+                return(
+                        <div className="mainContainer loading">
+                                <l-quantum size="150" speed="2.4" color="black"></l-quantum>
+                        </div>
+                )
+        }
+
+        if(bestSliceReducerError === true){
+                        return <div className="mainContainer error">Error...</div>
+        }
+
         return ( 
                 <div className="mainContainer">
-                        <PageButton page={page} nextPage={nextPage} prevPage={prevPage}/>
+                        <div>
+                                <PageButton page={page} nextPage={nextPage} prevPage={prevPage}/>
+                        </div>
                         <ul>
                         {bestSliceReducerData.map((data, index) => {
                                 return (
@@ -53,7 +71,9 @@ const Main = () => {
                                         </li>)})
                         } 
                         </ul>
-                        <PageButton page={page}/>
+                        <div >
+                                <PageButton page={page} nextPage={nextPage} prevPage={prevPage}/>
+                        </div>
                 </div>
          );
 }

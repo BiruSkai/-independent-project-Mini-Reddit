@@ -2,6 +2,8 @@ import "./cardList.css";
 import { FaRegComments } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { setTheme } from "../../../redux/ducks/ThemeSlice";
 
 function createdTime (arg){
         const now = Date.now();
@@ -23,11 +25,9 @@ function createdTime (arg){
         };
 };
 
+export const CardList = ({data}) => {
 
-
-export const CardList = ({best}) => {
-
-	const {subreddit, author, title, url, selftext, num_comments, ups, downs} = best;
+	const {subreddit, author, title, url, selftext, num_comments, ups, downs} = data;
 	// console.log("subreddit in CardList.js", subreddit);
 	
 	return ( 
@@ -35,17 +35,18 @@ export const CardList = ({best}) => {
 			<div className="col">
 				<div className="card h-100">
 					<div className="card-header" id="header">
-						<div>
+						<Link to={`r/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
 							<small className="text-body-secondary ">Subreddit:</small>
 							<small className="text-body-secondary subheader">{subreddit}</small>
-						</div>
+						</Link>
+						
 						<div>
 							<small className="text-body-secondary ">Author:</small>
 							<small className="text-body-secondary subheader">{author}</small>
 						</div>
 						<div>
 							<small className="text-body-secondary ">Posted:</small>
-							<small className="text-body-secondary subheader">{createdTime(best)}</small>
+							<small className="text-body-secondary subheader">{createdTime(data)}</small>
 						</div>
 					</div>
 					<img src={`${url}`} className="card-img-top" alt=""/>

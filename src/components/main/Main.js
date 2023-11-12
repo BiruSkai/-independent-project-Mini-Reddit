@@ -3,24 +3,34 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {CardList} from "./cardList/CardList";
 import PageButton from "../pageButton/PageButton";
-import { fetchBest, increment } from "../../redux/ducks/BestSlice";
+import { fetchBest} from "../../redux/ducks/BestSlice";
+import {increment, setCount} from "../../redux/ducks/PageCountSlice";
+import {setTheme} from "../../redux/ducks/ThemeSlice";
+import {GiSpikedDragonHead} from 'react-icons/gi';
 import {quantum} from "ldrs";
 quantum.register();
 
-export const init= 5
+
+//Number of items for init.
+const init= 5
+const source = "Best"
+
 const Main = () => {
         const dispatch = useDispatch();
-        // const [initialized, setInitialized] = useState(false);
 
+        //init useEffect
         useEffect(() => {
-                // setInitialized(true);
-                dispatch(increment({page:init}));
+                //change Theme
+                dispatch(setTheme(source));
+                //set page count
+                dispatch(setCount(init));
+                //fetch data
                 dispatch(fetchBest({page:init}));
-                // console.log("init Status post init ");
+                console.log("init useEffect Main ");
         },[dispatch])
 
-        const page = parseInt(useSelector((state) => state.bestSliceReducer.count.count))
-        // console.log("page in main.js ", page)          
+        const page = parseInt(useSelector((state) => state.pageCountSliceReducer.count.count))
+        console.log("page in main.js ", page)          
 
         //UseEffect for initialization, next-, prev-Page
         useEffect(() => {
@@ -29,7 +39,7 @@ const Main = () => {
                         i++
                 } 
                 else {
-                        // console.log("dispatch page post init ", page)
+                        console.log("dispatch page post init ", page)
                         dispatch(increment({page}));
                         dispatch(fetchBest({page}));
                 } 
@@ -37,12 +47,13 @@ const Main = () => {
 
         //Get array of data that will be displayed
         const bestSliceReducerData = useSelector((state) => state.bestSliceReducer.data);
-        // console.log("bestSliceReducerData in main ", bestSliceReducerData);
+        console.log("bestSliceReducerData in main ", bestSliceReducerData);
 
         // Get data.name of first and last item on the screen
         const bestSliceReducerPage = useSelector((state) => state.bestSliceReducer.page);
         const {nextPage, prevPage} = bestSliceReducerPage;
-        // console.log("nextPage: ", nextPage, "prevPage: ", prevPage);
+        console.log("nextPage: ", nextPage, "prevPage: ", prevPage);
+
         const bestSliceReducerLoading = useSelector((state) => state.bestSliceReducer.isLoading);
         const bestSliceReducerError = useSelector(state => state.bestSliceReducer.isError);
 
@@ -60,20 +71,20 @@ const Main = () => {
 
         return ( 
                 <div className="mainContainer">
-                        <div>
-                                <PageButton page={page} nextPage={nextPage} prevPage={prevPage}/>
+                        <div className="subMainContainer">
+                                <div id="sourceBest"><GiSpikedDragonHead/>{source}</div>
+                                <div>
+                                        <PageButton source={source} page={page} nextPage={nextPage} prevPage={prevPage}/>
+                                </div>
                         </div>
                         <ul>
                         {bestSliceReducerData.map((data, index) => {
                                 return (
                                         <li key={index}>
-                                                <CardList best={data}/>
+                                                <CardList data={data}/>
                                         </li>)})
                         } 
                         </ul>
-                        <div >
-                                <PageButton page={page} nextPage={nextPage} prevPage={prevPage}/>
-                        </div>
                 </div>
          );
 }

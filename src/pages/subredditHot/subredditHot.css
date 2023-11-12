@@ -1,20 +1,20 @@
 .mainContainer{
-    width: 100%;
-    height: 100vh;
-    background: #c9f5c9;
-    padding: 10px 0;
-    overflow-y: auto;
-}
+        width: 100%;
+        height: 100vh;
+        background: #c9f5c9;
+        padding: 10px 0;
+        overflow-y: auto;
+    }
 
-#sourceBest{
+#sourceHot{
     text-align: center;
-    color:blue;
+    color:red;
     align-items: center;
     display: flex;
     justify-content: center;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.1rem;
 }
-
+    
 .loading{
     display: flex;
     justify-content: center;
@@ -53,12 +53,12 @@
 
 @media (min-width: 1024px) {
     .mainContainer{
-       max-width: 845px;
+        max-width: 845px;
     }
 }
 
 @media (min-width: 1440px) {
     .mainContainer{
-       max-width: 1260px;
+        max-width: 1260px;
     }
 }

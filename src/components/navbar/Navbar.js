@@ -2,7 +2,7 @@ import {FcReddit} from "react-icons/fc";
 import {BiSearchAlt} from "react-icons/bi";
 import {RxDropdownMenu} from "react-icons/rx";
 import "./navbar.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Setting from "../setting/Setting";
 import ListLink from "../listLink/ListLink";
 
@@ -37,10 +37,10 @@ const Header = () => {
         return ( 
           <>
             <div className="topnav">
-              <NavLink to="/" className="redditIcon">
+              <Link to="/" className="redditIcon">
                 <FcReddit className="redditIcon" size={30}/> 
                 <span className="redditTitle" >Mini Reddit</span>
-              </NavLink>
+              </Link>
               <div className="date">{today}</div>
               <div className="search-container">
                 <form > 

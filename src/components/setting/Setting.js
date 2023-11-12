@@ -1,14 +1,19 @@
 import "./setting.css";
-import { useDispatch } from "react-redux";
-import { setCount } from "../../redux/ducks/BestSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setCount, reset } from "../../redux/ducks/PageCountSlice";
 import { fetchBest } from "../../redux/ducks/BestSlice";
+import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
 import { useState } from "react";
-import {init} from "../main/Main";
+import { useParams } from "react-router-dom";
 
 const Setting = () => {
         const dispatch = useDispatch();
-        const [page, setPage] = useState(init);
-        console.log("init page Setting.js", init);
+        const [page, setPage] = useState();
+        const {subreddit} = useParams();
+
+        //Get the current theme
+        const theme = useSelector(state => state.themeSliceReducer.theme);
+        console.log("theme in Setting.js ", theme)
 
         const handleClickSetting = (e) => {
                 e.preventDefault();
@@ -17,8 +22,15 @@ const Setting = () => {
                         console.log("newPage in Setting ", newPage)
                         setPage(newPage);
                         dispatch(setCount(newPage));
-                        dispatch(fetchBest({page: newPage}));
-                        return;
+
+                        //fetch data based on current theme
+                        switch(theme){
+                                case "SubredditHot":
+                                        dispatch(fetchHot({page: newPage, subreddit}));
+                                        break;
+                                default:
+                                        dispatch(fetchBest({page: newPage}));
+                        }
         };
         
         return ( 

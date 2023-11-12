@@ -1,4 +1,4 @@
-import Main from "./components/main/Main";
+import Main from "./pages/main/Main";
 import { Root } from './pages/root/Root';
 import { NoPage } from './pages/noPage/NoPage';
 import { Route } from 'react-router-dom';

@@ -1,8 +1,8 @@
 import "./main.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {CardList} from "./cardList/CardList";
-import PageButton from "../pageButton/PageButton";
+import {CardList} from "../../components/cardList/CardList";
+import PageButton from "../../components/pageButton/PageButton";
 import { fetchBest} from "../../redux/ducks/BestSlice";
 import {increment, setCount} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";

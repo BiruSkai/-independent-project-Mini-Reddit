@@ -3,7 +3,7 @@ import { FaRegComments } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
 import { Link } from "react-router-dom";
-import { setTheme } from "../../../redux/ducks/ThemeSlice";
+import { setTheme } from "../../redux/ducks/ThemeSlice";
 
 function createdTime (arg){
         const now = Date.now();

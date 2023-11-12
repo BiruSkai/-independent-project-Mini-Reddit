@@ -2,7 +2,7 @@ import "./subredditHot.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {CardList} from "../../components/main/cardList/CardList";
+import {CardList} from "../../components/cardList/CardList";
 import PageButton from "../../components/pageButton/PageButton";
 import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";

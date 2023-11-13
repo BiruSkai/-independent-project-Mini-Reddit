@@ -4,6 +4,7 @@ import { NoPage } from './pages/noPage/NoPage';
 import { Route } from 'react-router-dom';
 import { SearchPage } from "./pages/searchPage/SearchPage";
 import SubredditHot from "./pages/subredditHot/SubredditHot";
+import AuthorComment from "./pages/authorComment/AuthorComment";
 import { RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,7 +14,8 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Main />} />
-        <Route path="r/:subreddit/hot" element={<SubredditHot />} />
+        <Route path="r/subreddit/:subreddit/hot" element={<SubredditHot />} />
+        <Route path="user/:author/comments" element={<AuthorComment />} />
         <Route path='search' element={<SearchPage />} />
         <Route path="*" element={<NoPage />} />
       </Route> 

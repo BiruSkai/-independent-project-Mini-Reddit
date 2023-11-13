@@ -1,0 +1,55 @@
+.cardListHeader{
+        width: 90%;
+        display: inline-flex;
+        justify-content: space-around;
+}
+
+.cardListHeader h6{
+        font-size: 0.7rem;
+        display: inline; 
+}
+
+.card-header{
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        background: cyan;
+}
+
+.subheader{
+        display: block;
+        font-weight: bold;
+}
+
+#footer{
+        display: inline-flex;
+        background: lemonchiffon;
+}
+
+.subfooterContainer{
+        margin-right: 10px;
+        >.subfooter{
+                margin: auto 2px;
+        }
+}
+
+@media (min-width: 768px){
+        .cardListContainer{
+                margin: auto 30px;
+                font-size: 1.3rem;
+        }
+
+        .card-header{
+                font-size: 1rem;
+        }
+
+        .card-body{
+                text-align: left;
+        }
+}
+
+@media (min-width: 1440px){
+        .cardListContainer{
+                margin: auto 60px;
+        }
+}

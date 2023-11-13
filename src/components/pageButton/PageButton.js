@@ -6,6 +6,7 @@ import {GrFormPrevious} from 'react-icons/gr';
 import {increment, decrement, reset} from "../../redux/ducks/PageCountSlice";
 import {fetchBest} from "../../redux/ducks/BestSlice";
 import {fetchHot} from "../../redux/ducks/SubredditHotSlice";
+import {fetchAuthorComment} from "../../redux/ducks/authorCommentSlice";
 
 const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 	const dispatch = useDispatch();
@@ -17,42 +18,43 @@ const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 
 	//The lowest rank item displayed
 	const diff = pageState - page;
-	console.log("diff Click", typeof(diff), diff);
+	// console.log("diff Click", typeof(diff), diff);
 	
 	function handleClickNext() {
 		console.log("inside Click: source, page, nextPage: ", source, page, nextPage)
 		switch(source){
 			case "Best":
-				dispatch(fetchBest({page, nextPage}));
-				
+				dispatch(fetchBest({page, nextPage}));	
 				break;
 			case "SubredditHot":
 				dispatch(fetchHot({subreddit, page, nextPage}));
-				
+				break;
+			case "AuthorComment":
+				dispatch(fetchAuthorComment({subreddit, page, nextPage}));
 				break;
 			default:	
 				return console.log("PageButton.js Switch Click next has no match");
 		}	
 		dispatch(increment({page}))
-		return console.log("next Click ",page);
+		// return console.log("next Click ",page);
 	};
 
 	function handleClickPrevious(){
 		switch(source){
 			case "Best":
 				dispatch(fetchBest({page, prevPage}));
-				
 				break;
 			case "SubredditHot":
 				dispatch(fetchHot({subreddit, page, prevPage}));
-				
 				break;
-			default:
-				
+			case "AuthorComment":
+				dispatch(fetchAuthorComment({subreddit, page, prevPage}));
+				break;
+			default:	
 				return console.log("PageButton.js Switch Click prev has no match");
 		}
 		dispatch(decrement({page}))
-		return console.log("prev Click ",page);
+		// return console.log("prev Click ",page);
 	};
 	
 	function handleClickReset(){
@@ -62,6 +64,9 @@ const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 				break;
 			case "SubredditHot":
 				dispatch(fetchHot({page}));
+				break;
+			case "AuthorComment":
+				dispatch(fetchAuthorComment({page}));
 				break;
 			default:
 				return console.log("PageButton.js Switch Click reset has no match");

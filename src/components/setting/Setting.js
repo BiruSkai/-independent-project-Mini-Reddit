@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCount, reset } from "../../redux/ducks/PageCountSlice";
 import { fetchBest } from "../../redux/ducks/BestSlice";
 import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
+import { fetchAuthorComment } from "../../redux/ducks/authorCommentSlice";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -27,6 +28,9 @@ const Setting = () => {
                         switch(theme){
                                 case "SubredditHot":
                                         dispatch(fetchHot({page: newPage, subreddit}));
+                                        break;
+                                case "AuthorComment":
+                                        dispatch(fetchAuthorComment({page: newPage, subreddit}));
                                         break;
                                 default:
                                         dispatch(fetchBest({page: newPage}));

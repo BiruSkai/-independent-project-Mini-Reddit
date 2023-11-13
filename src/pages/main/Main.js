@@ -10,7 +10,6 @@ import {GiSpikedDragonHead} from 'react-icons/gi';
 import {quantum} from "ldrs";
 quantum.register();
 
-
 //Number of items for init.
 const init= 5
 const source = "Best"

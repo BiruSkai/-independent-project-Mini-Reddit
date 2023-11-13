@@ -1,23 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchHot = createAsyncThunk("fetchHot", async(args) => {
+export const fetchAuthorComment = createAsyncThunk("fetchAuthorComment", async(args) => {
         const {subreddit, page, prevPage, nextPage} = args;
-        console.log("prefetch args in HotSlice ", subreddit, page, nextPage, prevPage)
+        
 
         try{
-                const fetchHot = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=${page}&after=${nextPage}&before=${prevPage}`);
-                const data = fetchHot.json();
-                console.log("data fetchHot asyncThunk ", data);
+                const fetchAuthorComment = await fetch(`https://www.reddit.com/user/${subreddit}/comments.json?limit=${page}&after=${nextPage}&before=${prevPage}`);
+                const data = fetchAuthorComment.json();
+                console.log("postfetch args in authorCommentSlice ", subreddit, page, nextPage, prevPage)
+                console.log("data fetchAuthorComment asyncThunk ", data);
                 return data;
         } catch(err){
-                const message = `Error occured in fetchHot. Message: ${err.message}`;
-                console.log("error SubredditHotSlice", message)
+                const message = `Error occured in fetchAuthorComment. Message: ${err.message}`;
+                console.log("error AuthorCommentSlice", message)
                 throw new Error(message)
         }
 });
 
-const hotSlice = createSlice({
-        name: "hot",
+const authorCommentSlice = createSlice({
+        name: "authorComment",
         initialState: {
                 isLoading: false,
                 data:[],
@@ -27,23 +28,23 @@ const hotSlice = createSlice({
         },
      
         extraReducers: (builder) => {
-                builder.addCase(fetchHot.pending, (state, action) => {
+                builder.addCase(fetchAuthorComment.pending, (state, action) => {
                         state.isLoading = true;
                         state.isError = false;
                 });
-                builder.addCase(fetchHot.fulfilled, (state, action) => {
+                builder.addCase(fetchAuthorComment.fulfilled, (state, action) => {
                         state.isLoading = false;
                         state.isError = false;
                         state.data = action.payload.data.children.map(child => child.data);
 
                         const lengthData = state.data.length;
-                        console.log("lengthData HotSlice", lengthData)
+                        console.log("lengthData authorCommentSlice", lengthData)
 
                         state.page.nextPage = state.data[lengthData - 1].name;
                         state.page.prevPage = state.data[0].name
         
                 });
-                builder.addCase(fetchHot.rejected, (state, action) => {
+                builder.addCase(fetchAuthorComment.rejected, (state, action) => {
                         state.isLoading = false;
                         state.isError = true;
                 });
@@ -51,5 +52,4 @@ const hotSlice = createSlice({
         
 });
 
-export default hotSlice.reducer;
-
+export default authorCommentSlice.reducer;

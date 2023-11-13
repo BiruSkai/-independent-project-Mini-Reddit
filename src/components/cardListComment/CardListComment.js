@@ -1,9 +1,7 @@
-import "./cardList.css";
+import "./cardListComment.css";
 import { FaRegComments } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
-import { Link } from "react-router-dom";
-import { setTheme } from "../../redux/ducks/ThemeSlice";
 
 function createdTime (arg){
         const now = Date.now();
@@ -25,34 +23,29 @@ function createdTime (arg){
         };
 };
 
-export const CardList = ({data}) => {
+export const CardListComment = ({data}) => {
 
-	const {subreddit, author, title, url, selftext, num_comments, ups, downs} = data;
-	// console.log("subreddit in CardList.js", subreddit);
+	const {link_title, author, link_url, num_comments, ups, downs} = data;
+	// console.log("data" in CardList.js", link_title);
 	
 	return ( 
 		<div className="cardListContainer">
 			<div className="col">
 				<div className="card h-100">
 					<div className="card-header" id="header">
-						<Link to={`r/subreddit/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
-							<small className="text-body-secondary ">Subreddit:</small>
-							<small className="text-body-secondary subheader">{subreddit}</small>
-						</Link>
-						
-						<Link to={`user/${author}/comments`} onClick={setTheme("AuthorComment")}>
+						<div >
 							<small className="text-body-secondary ">Author:</small>
 							<small className="text-body-secondary subheader">{author}</small>
-						</Link>
+						</div>
 						<div>
 							<small className="text-body-secondary ">Posted:</small>
 							<small className="text-body-secondary subheader">{createdTime(data)}</small>
 						</div>
 					</div>
-					<img src={`${url}`} className="card-img-top" alt=""/>
 					<div className="card-body">
-						<h5 className="card-title">{title}</h5>
-						<p className="card-text">{selftext}</p>
+                                                <a href={link_url} target="_blank" rel="noreferrer">
+                                                        <h5 className="card-title">{link_title}</h5>
+                                                </a>
 					</div>
 					<div className="card-footer" id="footer">
 						<div className="subfooterContainer">

@@ -4,6 +4,7 @@ import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import { setTheme } from "../../redux/ducks/ThemeSlice";
+import { useSelector } from "react-redux";
 
 function createdTime (arg){
         const now = Date.now();
@@ -29,21 +30,35 @@ export const CardList = ({data}) => {
 
 	const {subreddit, author, title, url, selftext, num_comments, ups, downs} = data;
 	// console.log("subreddit in CardList.js", subreddit);
-	
+
+	const theme = useSelector(state => state.themeSliceReducer.theme);
+	console.log("theme in CardList.js: ", theme)
+		
 	return ( 
 		<div className="cardListContainer">
 			<div className="col">
 				<div className="card h-100">
 					<div className="card-header" id="header">
-						<Link to={`r/subreddit/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
-							<small className="text-body-secondary ">Subreddit:</small>
-							<small className="text-body-secondary subheader">{subreddit}</small>
-						</Link>
-						
-						<Link to={`user/${author}/comments`} onClick={setTheme("AuthorComment")}>
-							<small className="text-body-secondary ">Author:</small>
-							<small className="text-body-secondary subheader">{author}</small>
-						</Link>
+						{theme === "SubredditHot" ?
+							<div>
+								<small className="text-body-secondary">Subreddit:</small>
+								<small className="text-body-secondary subheader">{subreddit}</small>
+							</div> : 
+							<Link to={`r/subreddit/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
+								<small className="text-body-secondary">Subreddit:</small>
+								<small className="text-body-secondary subheader">{subreddit}</small>
+							</Link>
+						}
+						{theme === "SubredditHot" ?
+							<div>
+								<small className="text-body-secondary">Author:</small>
+								<small className="text-body-secondary subheader">{author}</small>
+							</div> : 
+							<Link to={`user/${author}/comments`} onClick={setTheme("SubredditHot")}>
+								<small className="text-body-secondary ">Author:</small>
+								<small className="text-body-secondary subheader">{author}</small>
+							</Link>
+						}
 						<div>
 							<small className="text-body-secondary ">Posted:</small>
 							<small className="text-body-secondary subheader">{createdTime(data)}</small>

@@ -1,4 +1,5 @@
 import "./subredditHot.css";
+import {init} from "../main/Main";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -24,7 +25,7 @@ const SubredditHot = () => {
 
         //init useEffect
         useEffect(() => {
-                const init = 4
+        
                 //Reset pageCountSlice
                 dispatch(setCount(init));
                 //Set new Theme in ThemeSlice

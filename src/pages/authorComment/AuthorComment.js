@@ -1,8 +1,9 @@
 import "./authorComment.css";
+import {init} from "../main/Main";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {CardListComment} from "../../components/cardListComment/CardListComment";
+import {CardListComment} from "./CardListComment";
 import PageButton from "../../components/pageButton/PageButton";
 import  {fetchAuthorComment}  from "../../redux/ducks/authorCommentSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
@@ -10,7 +11,6 @@ import { setTheme } from "../../redux/ducks/ThemeSlice";
 import {FaComments} from 'react-icons/fa';
 import {quantum} from "ldrs";
 quantum.register();
-
 
 const source = "AuthorComment";
 
@@ -25,7 +25,6 @@ const AuthorComment = () => {
 
         //init useEffect
         useEffect(() => {
-                const init = 4
                 //Reset pageCountSlice
                 dispatch(setCount(init));
                 //Set new Theme in ThemeSlice

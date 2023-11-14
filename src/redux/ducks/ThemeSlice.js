@@ -12,5 +12,7 @@ const themeSlice = createSlice({
         }
 })
 
+//for configurationStore
 export default themeSlice.reducer;
+//Action used 
 export const {setTheme} = themeSlice.actions;

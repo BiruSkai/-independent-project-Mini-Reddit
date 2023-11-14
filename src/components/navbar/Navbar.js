@@ -1,10 +1,12 @@
+import "./navbar.css";
 import {FcReddit} from "react-icons/fc";
 import {BiSearchAlt} from "react-icons/bi";
 import {RxDropdownMenu} from "react-icons/rx";
-import "./navbar.css";
 import { Link } from "react-router-dom";
 import Setting from "../setting/Setting";
 import ListLink from "../listLink/ListLink";
+import {fetchSearch} from "../../redux/ducks/SearchSlice";
+import {setTheme} from "../../redux/ducks/ThemeSlice";
 
 const Header = () => {
         var today = new Date();
@@ -17,6 +19,17 @@ const Header = () => {
         const handleClickDropdown = () => {
           let  dropDown= document.querySelector(".offCanvas");
           dropDown.classList.add("onCanvas");
+        }
+
+        const handleClickSearch = (e) => {
+          const searchInput = document.querySelector(".searchInput");
+          console.log("searchInput postClick: ", searchInput);
+
+          const searchValue = e.target.searchInput.value;
+          console.log("searchValue postClick: ", searchValue);
+
+          fetchSearch(searchValue);
+          setTheme("Search");
         }
 
         const closeDropdown = () => {
@@ -44,9 +57,17 @@ const Header = () => {
               <div className="date">{today}</div>
               <div className="search-container">
                 <form > 
-                    <input type="text" placeholder="  Search..." name="search" className="searchInput"/>
-                    <button type="submit"><BiSearchAlt size={25} /></button>
+                    <input type="text" placeholder="  Search..." name="search" id="searchInput"/>
+                    <button type="submit" onClick={handleClickSearch}><BiSearchAlt aria-hidden="true"/></button>
                 </form>
+            
+              {/* <div class="input-group mb-3">
+                <input type="text" className="form-control" id="inputSearch" placeholder="Search..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                <div className="input-group-append" id="buttonSearch">
+                  <button className="btn btn-outline-secondary" type="button"><BiSearchAlt /></button>
+                </div>
+              </div> */}
+              
               </div>
               <div className="dropdownIcon" onClick={handleClickDropdown}><RxDropdownMenu size={25} /></div>
               <div className="offCanvas">

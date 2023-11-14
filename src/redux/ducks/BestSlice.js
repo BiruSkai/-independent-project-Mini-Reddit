@@ -27,36 +27,8 @@ const bestSlice = createSlice({
                 isLoading: false,
                 data: [],
                 page: {nextPage: null, prevPage: null},
-                // count: {total: 0, count: 0},
                 isError: false,
         },
-        // reducers:{
-        //         increment(state, action){
-        //                 state.count.modifiedSetting = false; 
-        //                 state.count.count = action.payload.page;
-        //                 // console.log("incr count BestSlice ", state.count.count)
-        //                 state.count.total += action.payload.page;
-        //                 // console.log("incr total BestSlice ", state.count.total)
-        //         },
-        //         decrement(state, action){
-        //                 state.count.modifiedSetting = false;
-        //                 state.count.count = action.payload.page;
-        //                 // console.log("decr count BestSlice ", state.count.count)
-        //                 state.count.total -= action.payload.page;
-        //                 // console.log("decr total BestSlice ", state.count.total)
-        //         },
-        //         reset(state){
-        //                 state.count.total = 0;
-        //         },
-        //         setCount(state, action){
-        //                 state.count.modifiedSetting = true;
-        //                 state.count.count = action.payload;
-        //                 //Converting to int from string
-        //                 state.count.total = action.payload;
-        //                 // console.log("setCount BestSlice", state.count.count);
-                        
-        //         }
-        // },
         extraReducers: (builder) => {
                 builder.addCase(fetchBest.pending, (state, action) => {
                         state.isLoading = true;
@@ -67,10 +39,10 @@ const bestSlice = createSlice({
                         state.isError = false;
                         state.data = action.payload.data.children.map(child => child.data);
 
-                        const lengthData = state.data.length;
-                        // console.log("lengthData BestSlice", lengthData)
+                        const dataLength = state.data.length;
+                        // console.log("lengthData BestSlice", dataLength)
 
-                        state.page.nextPage = state.data[lengthData - 1].name;
+                        state.page.nextPage = state.data[dataLength - 1].name;
                         state.page.prevPage = state.data[0].name
         
                 });
@@ -83,4 +55,3 @@ const bestSlice = createSlice({
 });
 
 export default bestSlice.reducer;
-export const {increment, decrement, reset, setCount} = bestSlice.actions;

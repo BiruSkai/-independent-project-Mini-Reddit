@@ -1,7 +1,12 @@
 .setting{
-        background: rgba(240,288,239,0.3);
+        background: llinear-gradient(
+                to right,
+                #17191a 0%,
+                #1b3f43 100%
+                );
         padding: 10px;
         border-radius: 10px;
+        color: white;
 }
 
 .setting form{

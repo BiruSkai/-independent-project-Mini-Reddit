@@ -3,10 +3,12 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        position: static;
         padding: 4px;
         height: 72px;
-        background-color: #b0d7dc;
+        background-color: #222020;
+        color: white;
+        position: fixed;
+        width: 100%;
 }
 
 .redditIcon{
@@ -17,6 +19,7 @@
 
 .redditTitle{
         font-size: 0.8rem;
+        color: white;
 }
 
 .date{
@@ -24,7 +27,6 @@
 }
 
 .search-container{
-        
         width: 50%;
         min-width: 100px;
         max-width: 300px;
@@ -41,7 +43,6 @@ form {
        padding: 5px;
        border-radius: 10px;
        border:none;
-
 }
 
 #searchInput:focus{
@@ -75,8 +76,8 @@ form {
                 to right,
                 rgba(0,0,0,0.5) 0%,
                 rgba(0,0,0,0.5) 50%,
-                #d7e6e8 50%,
-                #d7e6e8 100%
+                #17191a 50%,
+                #1b3f43 100%
                 );
         right: -100%;
         top: 0px;

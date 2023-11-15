@@ -14,6 +14,13 @@
         display: flex;
         justify-content: space-between;
         background: cyan;
+        > a{
+                text-decoration: none;
+        }
+}
+
+.card-header a:hover{
+        scale: 1.3;
 }
 
 .subheader{

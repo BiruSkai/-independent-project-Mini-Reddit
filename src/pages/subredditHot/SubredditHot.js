@@ -26,7 +26,6 @@ const SubredditHot = () => {
 
         //init useEffect
         useEffect(() => {
-        
                 //Reset pageCountSlice
                 dispatch(setCount(init));
                 //Set new Theme in ThemeSlice

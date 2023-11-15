@@ -7,6 +7,7 @@ import { fetchBest} from "../../redux/ducks/BestSlice";
 import {increment, setCount} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";
 import {GiSpikedDragonHead} from 'react-icons/gi';
+import { MdOutlineVerticalAlignTop } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
@@ -68,6 +69,17 @@ const Main = () => {
                         return <div className="mainContainer error">Error...</div>
         }
 
+        //Scroll to top main.js
+        function scrollTop (){
+                const main = document.querySelector(".mainContainer");
+                console.log("scrollTop main: ", main);
+                
+                main.scrollTo(0,0);
+                window.scrollTo(0,0);
+                return;
+        }
+        
+
         return ( 
                 <div className="mainContainer">
                         <div className="subMainContainer">
@@ -84,6 +96,8 @@ const Main = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <div id="scrollTop" onClick={scrollTop}><MdOutlineVerticalAlignTop /></div>
+                        <br></br>
                 </div>
          );
 }

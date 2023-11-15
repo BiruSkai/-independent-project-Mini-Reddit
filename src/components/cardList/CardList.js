@@ -2,6 +2,7 @@ import "./cardList.css";
 import { FaRegComments } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
+import { GiClick } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { setTheme } from "../../redux/ducks/ThemeSlice";
 import { useSelector } from "react-redux";
@@ -38,7 +39,7 @@ export const CardList = ({data}) => {
 		<div className="cardListContainer">
 			<div className="col">
 				<div className="card h-100">
-					<div className="card-header" id="header">
+					<div className="card-header">
 						{theme === "SubredditHot" || theme === "New" || theme === "Top" || 
 								theme === "Rising" || theme === "Contra"?
 							<div>
@@ -47,7 +48,7 @@ export const CardList = ({data}) => {
 							</div> : 
 							<Link to={`r/subreddit/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
 								<small className="text-body-secondary">Subreddit:</small>
-								<small className="text-body-secondary subheader">{subreddit}</small>
+								<small className="text-body-secondary subheader"><GiClick />&nbsp;{subreddit}</small>
 							</Link>
 						}
 						{theme === "SubredditHot" || theme === "New" || theme === "Top" ||
@@ -58,7 +59,7 @@ export const CardList = ({data}) => {
 							</div> : 
 							<Link to={`user/${author}/comments`} onClick={setTheme("SubredditHot")}>
 								<small className="text-body-secondary ">Author:</small>
-								<small className="text-body-secondary subheader">{author}</small>
+								<small className="text-body-secondary subheader"><GiClick />&nbsp;{author}</small>
 							</Link>
 						}
 						<div>

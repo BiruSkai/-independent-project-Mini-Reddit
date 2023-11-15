@@ -1,28 +1,25 @@
 .containerFooter{
-    position: static;
-    width: 100%;
-    bottom: 0px;
-    background: #b0d7dc;
-    height: fit-content;
-    display: block;
+    position: relative;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    width: 100%;
+    bottom: -72px;
+    background: #222020;
+    height: 5rem;
+    display: block;
     text-align: center;
+    color: white;
     padding-top: 3px;
 }
 
 .footerSocialMedia a{
     margin: 0 5px;
     cursor: pointer;
+    color: white;
 }
 
 .footerAuthor{
     font-size: 0.8rem;
-}
-
-#scrollTop:hover{
-    cursor: pointer;
-    scale: 3;
 }
 
 @media (min-width: 600px) {
@@ -49,5 +46,23 @@
 @media(min-width: 1024px){
     .containerFooter{
         min-height: 6rem;
+        bottom: -73px;
+    }
+
+    .footerTitle, .footerAuthor{
+        font-size: 1.5rem;
+    }
+
+    .footerSocialMedia{
+       scale: 1.5;
+       > a{
+        margin: auto 0.5rem;
+       }
+    }
+}
+
+@media(min-width: 1440px){
+    .containerFooter{
+        bottom: -74px;
     }
 }

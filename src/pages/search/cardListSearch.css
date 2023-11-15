@@ -1,0 +1,15 @@
+.card-body{
+        max-height: 300px;
+        overflow-y: scroll;
+        
+}
+
+.title{
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.title:hover{
+        background: yellow;
+        font-size: 1.5rem;
+}

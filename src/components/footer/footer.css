@@ -3,7 +3,7 @@
     width: 100%;
     bottom: 0px;
     background: #b0d7dc;
-    height: 72px;
+    height: fit-content;
     display: block;
     align-items: center;
     justify-content: center;
@@ -20,6 +20,11 @@
     font-size: 0.8rem;
 }
 
+#scrollTop:hover{
+    cursor: pointer;
+    scale: 3;
+}
+
 @media (min-width: 600px) {
     .containerFooter{
         display: inline-flex;
@@ -32,5 +37,17 @@
 
     .footerAuthor {
         font-size: 1rem;
+    }
+}
+
+@media(min-width: 768px){
+    .containerFooter{
+        min-height: 5rem;
+    }
+}
+
+@media(min-width: 1024px){
+    .containerFooter{
+        min-height: 6rem;
     }
 }

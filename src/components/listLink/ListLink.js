@@ -1,12 +1,21 @@
 import "./listLink.css";
+import { MdOutlineNewReleases } from "react-icons/md";
+import { GiMountaintop } from "react-icons/gi";
+import { FiSunrise } from "react-icons/fi";
+import { GiWaveCrest } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
 
 const ListLink = () => {
         return ( 
-                <div className="listLink">
-                      <li >a</li>
-                      <li >b</li>
-                      <li >c</li>
-                </div>
+            <>
+                  <div id="topic">Topic:</div>
+                  <div className="listLink">
+                        <NavLink to="new"><MdOutlineNewReleases />&nbsp;New</NavLink>
+                        <NavLink to="top"><GiMountaintop />&nbsp;Top</NavLink>
+                        <NavLink to="rising"><FiSunrise />&nbsp;Rising</NavLink>
+                        <NavLink to="contra"><GiWaveCrest />&nbsp;Controversial</NavLink>
+                  </div>
+            </>
          );
 }
  

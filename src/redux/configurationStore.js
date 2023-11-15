@@ -4,6 +4,10 @@ import pageCountSliceReducer from "./ducks/PageCountSlice";
 import bestSliceReducer from "./ducks/BestSlice";
 import hotSliceReducer from "./ducks/SubredditHotSlice";
 import authorCommentSliceReducer from "./ducks/authorCommentSlice";
+import newSliceReducer from "./ducks/NewSlice";
+import topSliceReducer from "./ducks/TopSlice";
+import risingSliceReducer from "./ducks/RisingSlice";
+import contraSliceReducer from "./ducks/ContraSlice";
 import searchSliceReducer from "./ducks/SearchSlice";
 
 const rootReducer = {
@@ -12,6 +16,10 @@ const rootReducer = {
         bestSliceReducer,
         hotSliceReducer,
         authorCommentSliceReducer,
+        newSliceReducer,
+        topSliceReducer,
+        risingSliceReducer,
+        contraSliceReducer,
         searchSliceReducer,
 };
 

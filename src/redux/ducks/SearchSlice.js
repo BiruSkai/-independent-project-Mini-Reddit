@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSearch = createAsyncThunk("fetchSearch", async(args) => {
-        const {search,limit,before,after,sort,time} = args
-        console.log("searchSlice search,limit,before,after,sort,time: ", search,limit,before,after,sort,time);
+        
+        const {search,page,prevPage,nextPage,sort,time} = args
+        console.log("searchSlice search, page, prevPage, nextPage, sort, time: ", search,page,prevPage,nextPage,sort,time);
 
         try{
-                const response = await fetch(`https://www.reddit.com/r/${search}/search.json?limit=${limit}&before=${before}&after=${after}
+                const response = await fetch(`https://www.reddit.com/search/.json?q=${search}&limit=${page}&before=${prevPage}&after=${nextPage}
                         &sort=${sort}&t=${time}`);
                 const data = response.json();
                 console.log("Data post async fetchSearch: ", data);
@@ -21,9 +22,16 @@ const searchSlice = createSlice({
         name:"search",
         initialState:{
                 isLoading: false,
+                input: "",
                 data:[],
                 page:{prevPage:null, nextPage:null},
                 isError: false
+        },
+        reducers:{
+                inputSearch(state, action){
+                        state.input = action.payload;
+                        console.log("xx", state.input)
+                }
         },
         extraReducers: (builder) => {
                 builder.addCase(fetchSearch.pending, (state, action) => {
@@ -49,3 +57,4 @@ const searchSlice = createSlice({
 })
 
 export default searchSlice.reducer;
+export const {inputSearch} = searchSlice.actions;

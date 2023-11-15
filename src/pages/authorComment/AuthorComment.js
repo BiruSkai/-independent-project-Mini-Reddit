@@ -1,3 +1,4 @@
+import "../main/main.css";
 import "./authorComment.css";
 import {init} from "../main/Main";
 import { useEffect } from "react";
@@ -72,7 +73,7 @@ const AuthorComment = () => {
 
         return ( 
                 <div className="mainContainer">
-                        <div id="sourceAuthorComment"><FaComments/>{source}</div>
+                        <div id="sourceAuthorComment">&nbsp;<FaComments/>{source}</div>
                         <div>
                                 <PageButton source={source} subreddit={author} page={page} nextPage={nextPage} prevPage={prevPage}/>
                         </div>

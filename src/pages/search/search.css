@@ -1,20 +1,20 @@
 .mainContainer{
-    width: 100%;
-    height: 100vh;
-    background: #c9f5c9;
-    padding: 10px 0;
-    overflow-y: auto;
-}
+        width: 100%;
+        height: 100vh;
+        background: #babab4;
+        padding: 10px 0;
+        overflow-y: auto;
+    }
 
-#sourceBest{
+#sourceSearch{
     text-align: center;
-    color:blue;
+    color:rgb(0, 51, 255);
     align-items: center;
     display: flex;
     justify-content: center;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.1rem;
 }
-
+    
 .loading{
     display: flex;
     justify-content: center;
@@ -39,14 +39,26 @@
 @media (min-width:600px) {
     .mainContainer{
         position: relative;
-        left: 30%;
-        width: 70%;
+        max-width: 420px;
+        left: 180px;
+        width: auto;
     }
 }
 
 @media (min-width:768px) {
     .mainContainer{
-        left: 25%;
-        width: 75%;
+        max-width: 589px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mainContainer{
+        max-width: 845px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .mainContainer{
+        max-width: 1260px;
     }
 }

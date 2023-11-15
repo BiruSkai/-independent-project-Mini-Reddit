@@ -1,9 +1,14 @@
 import "./setting.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setCount, reset } from "../../redux/ducks/PageCountSlice";
+import { setCount } from "../../redux/ducks/PageCountSlice";
 import { fetchBest } from "../../redux/ducks/BestSlice";
 import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
 import { fetchAuthorComment } from "../../redux/ducks/authorCommentSlice";
+import { fetchNew } from "../../redux/ducks/NewSlice";
+import { fetchTop } from "../../redux/ducks/TopSlice";
+import { fetchRising } from "../../redux/ducks/RisingSlice";
+import { fetchContra } from "../../redux/ducks/ContraSlice";
+import { fetchSearch } from "../../redux/ducks/SearchSlice";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +20,9 @@ const Setting = () => {
         //Get the current theme
         const theme = useSelector(state => state.themeSliceReducer.theme);
         console.log("theme in Setting.js ", theme)
+
+        const search = useSelector(state => state.searchSliceReducer.input);
+        console.log("search in Setting.js ", search)
 
         const handleClickSetting = (e) => {
                 e.preventDefault();
@@ -31,6 +39,21 @@ const Setting = () => {
                                         break;
                                 case "AuthorComment":
                                         dispatch(fetchAuthorComment({page: newPage, subreddit}));
+                                        break;
+                                case "Search":
+                                        dispatch(fetchSearch({page: newPage, search}));
+                                        break;
+                                case "New":
+                                        dispatch(fetchNew({page: newPage, search}));
+                                        break;
+                                case "Top":
+                                        dispatch(fetchTop({page: newPage, search}));
+                                        break;
+                                case "Rising":
+                                        dispatch(fetchRising({page: newPage, search}));
+                                        break;
+                                case "Contra":
+                                        dispatch(fetchContra({page: newPage, search}));
                                         break;
                                 default:
                                         dispatch(fetchBest({page: newPage}));

@@ -9,6 +9,7 @@ const Sidebar = () => {
                         <div className="sidebarContainer"> 
                                 <ul>
                                         <li><Setting /></li>
+                                        <br></br>
                                         <ListLink /> 
                                 </ul>          
                         </div>

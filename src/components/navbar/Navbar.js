@@ -2,13 +2,14 @@ import "./navbar.css";
 import {FcReddit} from "react-icons/fc";
 import {BiSearchAlt} from "react-icons/bi";
 import {RxDropdownMenu} from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Setting from "../setting/Setting";
 import ListLink from "../listLink/ListLink";
-import {fetchSearch} from "../../redux/ducks/SearchSlice";
-import {setTheme} from "../../redux/ducks/ThemeSlice";
+import {inputSearch} from "../../redux/ducks/SearchSlice";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
+        //Date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -21,22 +22,12 @@ const Header = () => {
           dropDown.classList.add("onCanvas");
         }
 
-        const handleClickSearch = (e) => {
-          const searchInput = document.querySelector(".searchInput");
-          console.log("searchInput postClick: ", searchInput);
-
-          const searchValue = e.target.searchInput.value;
-          console.log("searchValue postClick: ", searchValue);
-
-          fetchSearch(searchValue);
-          setTheme("Search");
-        }
-
         const closeDropdown = () => {
           let removeDropdown = document.querySelector(".offCanvas");
           removeDropdown.classList.remove("onCanvas");
         }
-
+        
+        //When to remove Setting Component
         window.onload = e => {
           const screenWidth = window.innerWidth;
           // console.log("screen width ", screenWidth);
@@ -47,7 +38,22 @@ const Header = () => {
           }
         }
 
-        return ( 
+        const navigate = useNavigate();
+        const dispatch = useDispatch();
+        const handleClickSearch = (e) => {
+          e.preventDefault();
+          const searchValue = document.querySelector("#searchInput").value;
+          console.log("searchInput postClick: ", searchValue)
+
+          // fetchSearch({search:searchValue, page:init})
+          //Send payload to inputSearch
+          dispatch(inputSearch(searchValue));
+        
+          navigate(`search/${searchValue}`)
+          return;
+        };
+
+        return (
           <>
             <div className="topnav">
               <Link to="/" className="redditIcon">
@@ -56,18 +62,10 @@ const Header = () => {
               </Link>
               <div className="date">{today}</div>
               <div className="search-container">
-                <form > 
-                    <input type="text" placeholder="  Search..." name="search" id="searchInput"/>
-                    <button type="submit" onClick={handleClickSearch}><BiSearchAlt aria-hidden="true"/></button>
-                </form>
-            
-              {/* <div class="input-group mb-3">
-                <input type="text" className="form-control" id="inputSearch" placeholder="Search..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                <div className="input-group-append" id="buttonSearch">
-                  <button className="btn btn-outline-secondary" type="button"><BiSearchAlt /></button>
-                </div>
-              </div> */}
-              
+                <form >
+                  <input type="text" placeholder="  Search..." name="search" id="searchInput"/>
+                  <button onClick={handleClickSearch}><BiSearchAlt aria-hidden="true"/></button>
+                </form>  
               </div>
               <div className="dropdownIcon" onClick={handleClickDropdown}><RxDropdownMenu size={25} /></div>
               <div className="offCanvas">

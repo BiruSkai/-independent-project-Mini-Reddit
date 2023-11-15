@@ -1,10 +1,7 @@
-import "./cardList.css";
+import "./cardListSearch.css";
 import { FaRegComments } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { FaRegThumbsDown } from 'react-icons/fa';
-import { Link } from "react-router-dom";
-import { setTheme } from "../../redux/ducks/ThemeSlice";
-import { useSelector } from "react-redux";
 
 function createdTime (arg){
         const now = Date.now();
@@ -26,50 +23,35 @@ function createdTime (arg){
         };
 };
 
-export const CardList = ({data}) => {
+export const CardListSearch = ({data}) => {
 
 	const {subreddit, author, title, url, selftext, num_comments, ups, downs} = data;
-	// console.log("subreddit in CardList.js", subreddit);
-
-	const theme = useSelector(state => state.themeSliceReducer.theme);
-	console.log("theme in CardList.js: ", theme)
-		
+	// console.log("data" in CardListSearch.js", link_title);
+	
 	return ( 
 		<div className="cardListContainer">
 			<div className="col">
 				<div className="card h-100">
 					<div className="card-header" id="header">
-						{theme === "SubredditHot" || theme === "New" || theme === "Top" || 
-								theme === "Rising" || theme === "Contra"?
-							<div>
-								<small className="text-body-secondary">Subreddit:</small>
-								<small className="text-body-secondary subheader">{subreddit}</small>
-							</div> : 
-							<Link to={`r/subreddit/${subreddit}/hot`} onClick={setTheme("SubredditHot")} >
-								<small className="text-body-secondary">Subreddit:</small>
-								<small className="text-body-secondary subheader">{subreddit}</small>
-							</Link>
-						}
-						{theme === "SubredditHot" || theme === "New" || theme === "Top" ||
-							theme === "Rising" || theme === "Contra" ?
-							<div>
-								<small className="text-body-secondary">Author:</small>
-								<small className="text-body-secondary subheader">{author}</small>
-							</div> : 
-							<Link to={`user/${author}/comments`} onClick={setTheme("SubredditHot")}>
-								<small className="text-body-secondary ">Author:</small>
-								<small className="text-body-secondary subheader">{author}</small>
-							</Link>
-						}
+                                                <div >
+							<small className="text-body-secondary ">Subreddit:</small>
+							<small className="text-body-secondary subheader">{subreddit}</small>
+						</div>
+						<div >
+							<small className="text-body-secondary ">Author:</small>
+							<small className="text-body-secondary subheader">{author}</small>
+						</div>
 						<div>
 							<small className="text-body-secondary ">Posted:</small>
 							<small className="text-body-secondary subheader">{createdTime(data)}</small>
 						</div>
 					</div>
-					<img src={`${url}`} className="card-img-top" alt=""/>
-					<div className="card-body">
-						<h5 className="card-title">{title}</h5>
-						<p className="card-text">{selftext}</p>
+					<div className="card-body">                                                    
+                                                <h5 className="card-title">
+                                                        <a href={url} target="_blank" rel="noreferrer" className="title">{title}</a>
+                                                </h5>
+                                                <hr></hr>
+                                                <p className="text-body-secondary">{selftext}</p>                       
 					</div>
 					<div className="card-footer" id="footer">
 						<div className="subfooterContainer">

@@ -1,28 +1,26 @@
 import "../main/main.css";
-import "./subredditHot.css";
 import {init} from "../main/Main";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {CardList} from "../../components/cardList/CardList";
 import PageButton from "../../components/pageButton/PageButton";
-import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
+import { fetchNew } from "../../redux/ducks/NewSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
 import { setTheme } from "../../redux/ducks/ThemeSlice";
-import {GiFireDash} from 'react-icons/gi';
+import { MdOutlineNewReleases } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
+const source = "New";
 
-const source = "SubredditHot";
-
-const SubredditHot = () => {
+const New = () => {
         const dispatch = useDispatch();
         const {subreddit} = useParams();
 
         //How many items will be displayed
         const page = parseInt(useSelector((state) => state.pageCountSliceReducer.count.count))
-        console.log("page in SubredditHot.js ", page)   
+        console.log("page in New.js ", page)   
 
         //init useEffect
         useEffect(() => {
@@ -32,8 +30,8 @@ const SubredditHot = () => {
                 //Set new Theme in ThemeSlice
                 dispatch(setTheme(source));
                 //Fetch data
-                dispatch(fetchHot({page:init, subreddit}));
-                console.log("init useEffect SubredditHot ", init, subreddit);
+                dispatch(fetchNew({page:init, subreddit}));
+                console.log("init useEffect New ", init, subreddit);
         },[dispatch])
 
         //UseEffect for initialization, next-, prev-Page
@@ -42,25 +40,25 @@ const SubredditHot = () => {
                 if(i === 0){
                         i++
                 }else{
-                        console.log("dispatch page, subreddit SubredditHot.js ", page, subreddit)
+                        console.log("dispatch page, subreddit New.js ", page, subreddit)
                         dispatch(increment({page}));
-                        dispatch(fetchHot({page, subreddit}));
+                        dispatch(fetchNew({page, subreddit}));
                 }
         },[dispatch,page,subreddit]);
 
         //Get array of data that will be displayed
-        const hotSliceReducerData = useSelector((state) => state.hotSliceReducer.data);
-        console.log("hotSliceReducerData in SubredditHot.js ", hotSliceReducerData);
+        const newSliceReducerData = useSelector((state) => state.newSliceReducer.data);
+        console.log("newSliceReducerData in New.js ", newSliceReducerData);
 
         // Get data.name of first and last item on the screen
-        const hotSliceReducerPage = useSelector((state) => state.hotSliceReducer.page);
-        const {nextPage, prevPage} = hotSliceReducerPage;
+        const newSliceReducerPage = useSelector((state) => state.newSliceReducer.page);
+        const {nextPage, prevPage} = newSliceReducerPage;
         console.log("nextPage: ", nextPage, "prevPage: ", prevPage);
 
-        const hotSliceReducerLoading = useSelector((state) => state.hotSliceReducer.isLoading);
-        const hotSliceReducerError = useSelector(state => state.hotSliceReducer.isError);
+        const newSliceReducerLoading = useSelector((state) => state.newSliceReducer.isLoading);
+        const newSliceReducerError = useSelector(state => state.newSliceReducer.isError);
 
-        if(hotSliceReducerLoading === true){
+        if(newSliceReducerLoading === true){
                 return(
                         <div className="mainContainer loading">
                                 <l-quantum size="150" speed="2.4" color="black"></l-quantum>
@@ -68,18 +66,17 @@ const SubredditHot = () => {
                 )
         }
 
-        if(hotSliceReducerError === true){
+        if(newSliceReducerError === true){
                         return <div className="mainContainer error">Error...</div>
         }
 
         return ( 
                 <div className="mainContainer">
-                        <div id="sourceHot">&nbsp;<GiFireDash/>{source}</div>
                         <div>
                                 <PageButton source={source} subreddit={subreddit} page={page} nextPage={nextPage} prevPage={prevPage}/>
                         </div>
                         <ul>
-                        {hotSliceReducerData.map((data, index) => {
+                        {newSliceReducerData.map((data, index) => {
                                 return (
                                         <li key={index}>
                                                 <CardList data={data}/>
@@ -90,4 +87,4 @@ const SubredditHot = () => {
          );
 }
  
-export default SubredditHot;
+export default New;

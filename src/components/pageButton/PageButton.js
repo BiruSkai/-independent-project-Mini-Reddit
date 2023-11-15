@@ -7,14 +7,22 @@ import {increment, decrement, reset} from "../../redux/ducks/PageCountSlice";
 import {fetchBest} from "../../redux/ducks/BestSlice";
 import {fetchHot} from "../../redux/ducks/SubredditHotSlice";
 import {fetchAuthorComment} from "../../redux/ducks/authorCommentSlice";
+import {fetchNew} from "../../redux/ducks/NewSlice";
+import {fetchTop} from "../../redux/ducks/TopSlice";
+import {fetchRising} from "../../redux/ducks/RisingSlice";
+import {fetchContra} from "../../redux/ducks/ContraSlice";
+import {fetchSearch} from "../../redux/ducks/SearchSlice";
 
 const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 	const dispatch = useDispatch();
+
+	//Subreddit here is search value in navbar.js
 	console.log("PageButton.js source, subreddit, page, nextPage, prevPage: ", source, subreddit, page, nextPage, prevPage);
 
 	// Get the latest rank of downloaded items 
 	let pageState = parseInt(useSelector((state) => state.pageCountSliceReducer.count.total));
 	console.log("pageState in PageButton.js ", pageState);
+
 
 	//The lowest rank item displayed
 	const diff = pageState - page;
@@ -31,6 +39,21 @@ const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 				break;
 			case "AuthorComment":
 				dispatch(fetchAuthorComment({subreddit, page, nextPage}));
+				break;
+			case "Search":
+				dispatch(fetchSearch({search:subreddit, page, nextPage}));
+				break;
+			case "New":
+				dispatch(fetchNew({subreddit, page, nextPage}));
+				break;
+			case "Top":
+				dispatch(fetchTop({subreddit, page, nextPage}));
+				break;
+			case "Rising":
+				dispatch(fetchRising({subreddit, page, nextPage}));
+				break;
+			case "Contra":
+				dispatch(fetchContra({subreddit, page, nextPage}));
 				break;
 			default:	
 				return console.log("PageButton.js Switch Click next has no match");
@@ -50,6 +73,21 @@ const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 			case "AuthorComment":
 				dispatch(fetchAuthorComment({subreddit, page, prevPage}));
 				break;
+			case "Search":
+				dispatch(fetchSearch({search:subreddit, page, prevPage}));
+				break;
+			case "New":
+				dispatch(fetchNew({subreddit, page, prevPage}));
+				break;
+			case "Top":
+				dispatch(fetchTop({subreddit, page, prevPage}));
+				break;
+			case "Rising":
+				dispatch(fetchRising({subreddit, page, prevPage}));
+				break;
+			case "Contra":
+				dispatch(fetchContra({subreddit, page, prevPage}));
+				break;
 			default:	
 				return console.log("PageButton.js Switch Click prev has no match");
 		}
@@ -67,6 +105,21 @@ const PageButton = ({source, subreddit, page, nextPage, prevPage}) => {
 				break;
 			case "AuthorComment":
 				dispatch(fetchAuthorComment({page}));
+				break;
+			case "Search":
+				dispatch(fetchSearch({page}));
+				break;
+			case "New":
+				dispatch(fetchNew({page}));
+				break;
+			case "Top":
+				dispatch(fetchTop({page}));
+				break;
+			case "Rising":
+				dispatch(fetchRising({page}));
+				break;
+			case "Contra":
+				dispatch(fetchContra({page}));
 				break;
 			default:
 				return console.log("PageButton.js Switch Click reset has no match");

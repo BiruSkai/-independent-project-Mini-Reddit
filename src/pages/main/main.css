@@ -6,7 +6,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     top: 72px;
-    position: relative;
+    position: absolute;
+    z-index: -1;
 }
 
 #sourceBest{
@@ -53,7 +54,7 @@
 
 @media (min-width:600px) {
     .mainContainer{
-        position: relative;
+        /* position: relative; */
         left: 30%;
         width: 70%;
     }

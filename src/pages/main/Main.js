@@ -57,6 +57,16 @@ const Main = () => {
         const bestSliceReducerLoading = useSelector((state) => state.bestSliceReducer.isLoading);
         const bestSliceReducerError = useSelector(state => state.bestSliceReducer.isError);
 
+         //Scroll to top main.js
+        function scrollTop (){
+                const main = document.querySelector(".mainContainer");
+                console.log("scrollTop main: ", main);
+                
+                main.scrollTo(0,0);
+                window.scrollTo(0,0);
+                return;
+        }
+
         if(bestSliceReducerLoading === true){
                 return(
                         <div className="mainContainer loading">
@@ -68,17 +78,6 @@ const Main = () => {
         if(bestSliceReducerError === true){
                         return <div className="mainContainer error">Error...</div>
         }
-
-        //Scroll to top main.js
-        function scrollTop (){
-                const main = document.querySelector(".mainContainer");
-                console.log("scrollTop main: ", main);
-                
-                main.scrollTo(0,0);
-                window.scrollTo(0,0);
-                return;
-        }
-        
 
         return ( 
                 <div className="mainContainer">

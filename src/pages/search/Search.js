@@ -1,12 +1,13 @@
 import "../main/main.css";
+import "./search.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {CardListSearch} from "./CardListSearch";
-// import PageButton from "../../components/pageButton/PageButton";
 import { fetchSearch} from "../../redux/ducks/SearchSlice";
 import {increment, setCount} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";
 import { FaEye } from "react-icons/fa6";
+import { MdOutlineVerticalAlignTop } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
@@ -60,6 +61,16 @@ export const Search = () => {
         const searchSliceReducerLoading = useSelector((state) => state.searchSliceReducer.isLoading);
         const searchSliceReducerError = useSelector(state => state.searchSliceReducer.isError);
 
+         //Scroll to top main.js
+         function scrollTop (){
+                const main = document.querySelector(".mainContainer");
+                console.log("scrollTop main: ", main);
+                
+                main.scrollTo(0,0);
+                window.scrollTo(0,0);
+                return;
+        }
+
         if(searchSliceReducerLoading === true){
                 return(
                         <div className="mainContainer loading">
@@ -75,7 +86,7 @@ export const Search = () => {
         return ( 
                 <div className="mainContainer">
                         <div className="subMainContainer">
-                                <div id="sourceSearch">&nbsp;<FaEye />{source}</div>
+                                <div id="sourceSearch"><FaEye />&nbsp;{source}: {search}</div>
                                 {/* <div>
                                         <PageButton source={source} subreddit={search} page={page} nextPage={nextPage} prevPage={prevPage}/>
                                 </div> */}
@@ -88,6 +99,8 @@ export const Search = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <div id="scrollTop" onClick={scrollTop}><MdOutlineVerticalAlignTop /></div>
+                        <br></br>
                 </div>
          );
 }

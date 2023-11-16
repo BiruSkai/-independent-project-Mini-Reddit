@@ -41,3 +41,33 @@
                 height: 1.2rem;
         }
 }
+
+@media (min-width:1024px){
+        .setting{
+                > h6{
+                        font-size: 1.3rem;
+                }
+                > form{
+                        font-size: 1.1rem;
+                }
+        }
+
+        .setting_save{
+                margin-top: 1rem;
+        }
+}
+
+@media (min-width:1440px){
+        .setting{
+                > h6{
+                        font-size: 1.5rem;
+                }
+                > form{
+                        font-size: 1.2rem;
+                }
+        }
+
+        .setting_save{
+                margin-top: 1.2rem;
+        }
+}

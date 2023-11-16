@@ -1,9 +1,9 @@
 .containerFooter{
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: center;
     width: 100%;
-    bottom: -72px;
+    bottom: -152px;
     background: #222020;
     height: 5rem;
     display: block;
@@ -26,6 +26,7 @@
     .containerFooter{
         display: inline-flex;
         justify-content: space-around;
+        bottom: -132px;
     }
 
     .footerSocialMedia{
@@ -46,7 +47,7 @@
 @media(min-width: 1024px){
     .containerFooter{
         min-height: 6rem;
-        bottom: -73px;
+        bottom: -163px;
     }
 
     .footerTitle, .footerAuthor{
@@ -63,6 +64,6 @@
 
 @media(min-width: 1440px){
     .containerFooter{
-        bottom: -74px;
+        bottom: -170px;
     }
 }

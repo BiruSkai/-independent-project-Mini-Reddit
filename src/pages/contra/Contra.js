@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {CardList} from "../../components/cardList/CardList";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import PageButton from "../../components/pageButton/PageButton";
 import { fetchContra } from "../../redux/ducks/ContraSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
@@ -81,6 +82,8 @@ const Contra = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <ScrollTop />
+                        <br></br>
                 </div>
          );
 }

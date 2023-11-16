@@ -3,16 +3,14 @@ import "./search.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {CardListSearch} from "./CardListSearch";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import { fetchSearch} from "../../redux/ducks/SearchSlice";
-import {increment, setCount} from "../../redux/ducks/PageCountSlice";
+import {increment} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";
 import { FaEye } from "react-icons/fa6";
-import { MdOutlineVerticalAlignTop } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
-//Number of items for init.
-export const init= 5
 const source = "Search"
 
 export const Search = () => {
@@ -26,15 +24,11 @@ export const Search = () => {
         useEffect(() => {
                 //change Theme
                 dispatch(setTheme(source));
-                //set page count
-                dispatch(setCount(init));
-                //fetch data
-                dispatch(fetchSearch({search, page:init}));
-                console.log("init useEffect Main ");
+                console.log("init useEffect Search ");
         },[dispatch])
 
         const page = parseInt(useSelector((state) => state.pageCountSliceReducer.count.count))
-        console.log("page in Search.js ", page)      
+        console.log("page in Search.js: ", page)      
 
         //UseEffect for initialization, next-, prev-Page
         useEffect(() => {
@@ -43,11 +37,11 @@ export const Search = () => {
                         i++
                 } 
                 else {
-                        console.log("dispatch page post init ", page)
+                        console.log("dispatch search,page post init: ", search, page)
                         dispatch(increment({page}));
                         dispatch(fetchSearch({page}));
                 } 
-        },[page, dispatch]);
+        },[page, search, dispatch]);
 
         //Get array of data that will be displayed
         const searchSliceReducerData = useSelector((state) => state.searchSliceReducer.data);
@@ -60,16 +54,6 @@ export const Search = () => {
 
         const searchSliceReducerLoading = useSelector((state) => state.searchSliceReducer.isLoading);
         const searchSliceReducerError = useSelector(state => state.searchSliceReducer.isError);
-
-         //Scroll to top main.js
-         function scrollTop (){
-                const main = document.querySelector(".mainContainer");
-                console.log("scrollTop main: ", main);
-                
-                main.scrollTo(0,0);
-                window.scrollTo(0,0);
-                return;
-        }
 
         if(searchSliceReducerLoading === true){
                 return(
@@ -99,7 +83,7 @@ export const Search = () => {
                                         </li>)})
                         } 
                         </ul>
-                        <div id="scrollTop" onClick={scrollTop}><MdOutlineVerticalAlignTop /></div>
+                        <ScrollTop />
                         <br></br>
                 </div>
          );

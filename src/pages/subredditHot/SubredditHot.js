@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {CardList} from "../../components/cardList/CardList";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import PageButton from "../../components/pageButton/PageButton";
 import { fetchHot } from "../../redux/ducks/SubredditHotSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
@@ -85,6 +86,8 @@ const SubredditHot = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <ScrollTop />
+                        <br></br>
                 </div>
          );
 }

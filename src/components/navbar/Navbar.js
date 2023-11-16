@@ -8,8 +8,13 @@ import Setting from "../setting/Setting";
 import ListLink from "../listLink/ListLink";
 import {inputSearch} from "../../redux/ducks/SearchSlice";
 import { useDispatch } from "react-redux";
+import {fetchSearch} from "../../redux/ducks/SearchSlice";
+import {setCount} from "../../redux/ducks/PageCountSlice";
+import {init} from "../../pages/main/Main";
 
 const Header = () => {
+        const navigate = useNavigate();
+        const dispatch = useDispatch();
         //Date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -39,18 +44,19 @@ const Header = () => {
           }
         }
 
-        const navigate = useNavigate();
-        const dispatch = useDispatch();
         const handleClickSearch = (e) => {
           e.preventDefault();
-          const searchValue = document.querySelector("#searchInput").value;
-          console.log("searchInput postClick: ", searchValue)
+          let searchValue = document.querySelector("#searchInput").value;
+          console.log("searchInput, init postClick: ", searchValue, init)
 
-          // fetchSearch({search:searchValue, page:init})
           //Send payload to inputSearch
           dispatch(inputSearch(searchValue));
-        
+          dispatch(fetchSearch({search:searchValue, page:init}));
+          dispatch(setCount(init));
           navigate(`search/${searchValue}`)
+          //clear input field
+          document.querySelector("#searchInput").value="";
+
           return;
         };
 

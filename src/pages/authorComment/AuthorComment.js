@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {CardListComment} from "./CardListComment";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import PageButton from "../../components/pageButton/PageButton";
 import  {fetchAuthorComment}  from "../../redux/ducks/authorCommentSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
@@ -85,6 +86,8 @@ const AuthorComment = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <ScrollTop />
+                        <br></br>
                 </div>
          );
 }

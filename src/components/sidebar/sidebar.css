@@ -5,12 +5,9 @@
 @media (min-width: 600px) {
     .sidebarContainer{
         display: block;
+        z-index: -2;
         position: fixed;
-        background: linear-gradient(
-            to right,
-            #17191a 0%,
-            #1b3f43 100%
-            );
+        background: #222020;
         width: 30%;
         height: 100vh;
         padding: 10px;

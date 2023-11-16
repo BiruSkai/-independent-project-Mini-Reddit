@@ -2,12 +2,12 @@ import "./main.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {CardList} from "../../components/cardList/CardList";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import PageButton from "../../components/pageButton/PageButton";
 import { fetchBest} from "../../redux/ducks/BestSlice";
 import {increment, setCount} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";
 import {GiSpikedDragonHead} from 'react-icons/gi';
-import { MdOutlineVerticalAlignTop } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
@@ -57,16 +57,6 @@ const Main = () => {
         const bestSliceReducerLoading = useSelector((state) => state.bestSliceReducer.isLoading);
         const bestSliceReducerError = useSelector(state => state.bestSliceReducer.isError);
 
-         //Scroll to top main.js
-        function scrollTop (){
-                const main = document.querySelector(".mainContainer");
-                console.log("scrollTop main: ", main);
-                
-                main.scrollTo(0,0);
-                window.scrollTo(0,0);
-                return;
-        }
-
         if(bestSliceReducerLoading === true){
                 return(
                         <div className="mainContainer loading">
@@ -95,7 +85,7 @@ const Main = () => {
                                         </li>)})
                         } 
                         </ul>
-                        <div id="scrollTop" onClick={scrollTop}><MdOutlineVerticalAlignTop /></div>
+                        <ScrollTop />
                         <br></br>
                 </div>
          );

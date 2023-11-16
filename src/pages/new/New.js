@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {CardList} from "../../components/cardList/CardList";
+import {ScrollTop} from "../../components/subcomponents/ScrollTop";
 import PageButton from "../../components/pageButton/PageButton";
 import { fetchNew } from "../../redux/ducks/NewSlice";
 import { increment, setCount } from "../../redux/ducks/PageCountSlice";
 import { setTheme } from "../../redux/ducks/ThemeSlice";
-import { MdOutlineNewReleases } from "react-icons/md";
 import {quantum} from "ldrs";
 quantum.register();
 
@@ -83,6 +83,8 @@ const New = () => {
                                         </li>)})
                         } 
                         </ul>
+                        <ScrollTop />
+                        <br></br>
                 </div>
          );
 }

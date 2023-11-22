@@ -47,16 +47,17 @@
 
 @media(min-width: 1024px){
     .containerFooter{
-        min-height: 6rem;
-        bottom: -163px;
+        /* min-height: 6rem; */
+        max-height: 7rem;
+        bottom: -153px;
     }
 
     .footerTitle, .footerAuthor{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .footerSocialMedia{
-       scale: 1.5;
+       scale: 1.2;
        > a{
         margin: auto 0.5rem;
        }

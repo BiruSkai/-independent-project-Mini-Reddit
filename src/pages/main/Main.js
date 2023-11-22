@@ -8,8 +8,8 @@ import { fetchBest} from "../../redux/ducks/BestSlice";
 import {increment, setCount} from "../../redux/ducks/PageCountSlice";
 import {setTheme} from "../../redux/ducks/ThemeSlice";
 import {GiSpikedDragonHead} from 'react-icons/gi';
-import {quantum} from "ldrs";
-quantum.register();
+// import {quantum} from "ldrs";
+// quantum.register();
 
 //Number of items for init.
 export const init= 5

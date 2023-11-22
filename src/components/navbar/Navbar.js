@@ -65,7 +65,7 @@ const Header = () => {
             <div className="topnav">
               <Link to="/" className="redditIcon">
                 <FcReddit className="redditIcon" size={30}/> 
-                <span className="redditTitle" ><GiClick />&nbsp;Mini Reddit</span>
+                <span className="redditTitle" ><GiClick/>&nbsp;Mini Reddit</span>
               </Link>
               <div className="date">{today}</div>
               <div className="search-container">

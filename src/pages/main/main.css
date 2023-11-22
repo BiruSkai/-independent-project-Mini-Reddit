@@ -10,6 +10,12 @@
     z-index: -1;
 }
 
+.mainContainer li{
+    box-shadow: 5px 5px 5px darkgray;
+    background: #beb1b1;
+    border-radius: 1rem;
+}
+
 #sourceBest{
     text-align: center;
     color:blue;
@@ -36,7 +42,7 @@
     list-style-type: none;
     display: contents;
     > li{
-        margin: 15px 15px;
+        margin: 35px 15px;
     }
 }
 
@@ -63,7 +69,7 @@
 
 @media (min-width:768px) {
     .mainContainer{
-        left: 25%;
-        width: 75%;
+        left: 20%;
+        width: 80%;
     }
 }
